@@ -7,50 +7,32 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
 
-/**
- * The number of pages (wizard steps) to show in this demo.
- */
-private const val NUM_PAGES = 5
-
 class ScreenSlidePagerActivity : FragmentActivity() {
 
-    /**
-     * The pager widget, which handles animation and allows swiping horizontally to access previous
-     * and next wizard steps.
-     */
+    // ViwePager
     private lateinit var mPager: ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_screen_slide)
 
-        // Instantiate a ViewPager and a PagerAdapter.
+        // xml側で定義したViewPagerの基盤となるIDと紐付け
         mPager = findViewById(R.id.pager)
 
-        // The pager adapter, which provides the pages to the view pager widget.
+        // Adapterクラスを定義する
         val pagerAdapter = ScreenSlidePagerAdapter(supportFragmentManager)
+        // AdapterをViewPagerに接続する
         mPager.adapter = pagerAdapter
     }
 
     override fun onBackPressed() {
         if (mPager.currentItem == 0) {
-            // If the user is currently looking at the first step, allow the system to handle the
-            // Back button. This calls finish() on this activity and pops the back stack.
+            // 最初の画面からOSのバックボタンを押した場合、前画面に遷移させる
             super.onBackPressed()
         } else {
-            // Otherwise, select the previous step.
+            // 最初の画面以外の場合は、前のページに戻す
             mPager.currentItem = mPager.currentItem - 1
         }
-    }
-
-    /**
-     * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
-     * sequence.
-     */
-    private inner class ScreenSlidePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
-        override fun getCount(): Int = NUM_PAGES
-
-        override fun getItem(position: Int): Fragment = ScreenSlidePageFragment()
     }
 }
     
