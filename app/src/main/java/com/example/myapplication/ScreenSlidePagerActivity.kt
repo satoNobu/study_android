@@ -1,11 +1,9 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
-import android.support.v4.view.ViewPager
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 
 class ScreenSlidePagerActivity : FragmentActivity() {
 
@@ -23,6 +21,8 @@ class ScreenSlidePagerActivity : FragmentActivity() {
         val pagerAdapter = ScreenSlidePagerAdapter(supportFragmentManager)
         // AdapterをViewPagerに接続する
         mPager.adapter = pagerAdapter
+        val tabLayout: TabLayout = findViewById(R.id.tab_layout)
+        tabLayout.setupWithViewPager(mPager)
     }
 
     override fun onBackPressed() {

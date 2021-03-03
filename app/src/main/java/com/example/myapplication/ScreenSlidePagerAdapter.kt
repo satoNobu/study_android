@@ -1,9 +1,9 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
 
 
 // ページ数を設定
@@ -21,6 +21,10 @@ class ScreenSlidePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(f
         args.putString(Constance.PAGE_TITLE, "ページタイトル：" + (position + 1) + "ページ目")
         fragment.arguments = args
         return fragment
+    }
+
+    override fun getPageTitle(position: Int): CharSequence {
+        return "たぶ：" + (position + 1)
     }
 
 }
